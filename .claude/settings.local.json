@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(])",
+      "Bash(grep -rnE \"\\(?:^|[\\\\s\\\\\"'`]\\)\\(?:dark:|hover:|focus:|group-hover:|focus-within:|active:|disabled:|peer-checked:\\)?\\(?:dark:|hover:|focus:|group-hover:\\)?\\(?:bg|text|border|ring|from|to|via|outline|placeholder|accent|fill|stroke|divide\\)-\\(?:orange|blue|sky|gray|amber|cyan\\)-[0-9]+\" src/ --include=\"*.jsx\" --include=\"*.js\" --include=\"*.css\")",
+      "Bash(node --check api/index.js)",
+      "Bash(node --check api/routes/payment.route.js)",
+      "Bash(node --check api/controllers/payment.controller.js)",
+      "Bash(node --check api/models/payment.model.js)",
+      "Bash(node --check api/models/listing.model.js)",
+      "Bash(curl -sI -m 10 https://cmaal.com/Pay/)",
+      "Bash(curl -sI -m 10 https://cashmaal.com/Pay/)",
+      "Bash(curl -sI -m 10 https://www.cashmaal.com/Pay/)",
+      "Bash(node --check api/controllers/auth.controller.js)",
+      "Bash(node --check api/controllers/user.controller.js)",
+      "Bash(node --check api/routes/user.route.js)",
+      "Bash(node --check api/models/user.js)",
+      "Bash(stripe --version)",
+      "Bash(npm install *)",
+      "Bash(brew install *)",
+      "Bash(node --check api/middleware/upload.js)",
+      "Bash(git rm *)"
+    ]
+  }
+}
