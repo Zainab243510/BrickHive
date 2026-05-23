@@ -153,16 +153,6 @@ Contributions are always welcome! 🚀
 
 ---
 
-## 🧑‍💻 Author
-
-**Muhammad Zohaib Rashid**
-Software Engineer | MERN Stack Developer
-
-* 📧 Email: [zohaibrashid999@gmail.com](mailto:zohaibrashid999@gmail.com)
-* 🌐 GitHub: [https://github.com/zohaibfast99](https://github.com/zohaibfast99)
-* 🔗 LinkedIn: [https://www.linkedin.com/in/zohaib-rashid2323/](https://www.linkedin.com/in/zohaib-rashid2323/)
-
----
 
 ## ⭐ Support
 
