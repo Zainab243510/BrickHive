@@ -14,11 +14,25 @@ import { stripeWebhook } from '../server/controllers/payment.controller.js';
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_URI).then(() => {
-  console.log("✅ MongoDB Connected Successfully!");
-}).catch((error) => {
-  console.log("❌ MongoDB Connection Error:", error.message);
-});
+// Cache the connection across serverless invocations. On a warm container the
+// promise resolves immediately; on cold start the first request waits for it.
+let mongoConnection = null;
+function connectMongo() {
+  if (!mongoConnection) {
+    mongoConnection = mongoose
+      .connect(process.env.MONGO_URI, { serverSelectionTimeoutMS: 8000 })
+      .then((m) => {
+        console.log("✅ MongoDB Connected");
+        return m;
+      })
+      .catch((err) => {
+        mongoConnection = null;
+        console.log("❌ MongoDB Connection Error:", err.message);
+        throw err;
+      });
+  }
+  return mongoConnection;
+}
 
 const app = express();
 
@@ -32,6 +46,15 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
+
+app.use(async (req, res, next) => {
+  try {
+    await connectMongo();
+    next();
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Stripe webhook needs the raw request body to verify the signature, so it
 // MUST be mounted before the global express.json() parser.
