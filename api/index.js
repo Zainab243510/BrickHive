@@ -1,16 +1,16 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import userRouter from './routes/user.route.js';
-import authRouter from './routes/auth.route.js';
-import listingRouter from './routes/listing.route.js';
+import userRouter from '../server/routes/user.route.js';
+import authRouter from '../server/routes/auth.route.js';
+import listingRouter from '../server/routes/listing.route.js';
 import cors from 'cors';
 import http from 'http';
 import { Server } from 'socket.io';
-import notificationRoutes from './routes/notifications.route.js';
-import favoriteRoutes from './routes/favourites.route.js';
-import paymentRoutes from './routes/payment.route.js';
-import { stripeWebhook } from './controllers/payment.controller.js';
+import notificationRoutes from '../server/routes/notifications.route.js';
+import favoriteRoutes from '../server/routes/favourites.route.js';
+import paymentRoutes from '../server/routes/payment.route.js';
+import { stripeWebhook } from '../server/controllers/payment.controller.js';
 
 dotenv.config();
 
