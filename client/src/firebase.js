@@ -7,13 +7,13 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: "brick-and-click-8a281.firebaseapp.com",
-  projectId: "brick-and-click-8a281",
-  storageBucket: "brick-and-click-8a281.firebasestorage.app",
-  messagingSenderId: "756322469559",
-  appId: "1:756322469559:web:90905b1edb64726dc06f32",
-  measurementId: "G-0MRE98F976"
+  apiKey: "AIzaSyBuT4BSBtEA3VDhqrcQiYIjw5B4hjCPmws",
+  authDomain: "brickhive-2b8cc.firebaseapp.com",
+  projectId: "brickhive-2b8cc",
+  storageBucket: "brickhive-2b8cc.firebasestorage.app",
+  messagingSenderId: "631913101450",
+  appId: "1:631913101450:web:4a13fdd712842399ecd573",
+  measurementId: "G-JS9D7VYM32"
 };
 
 // Initialize Firebase
