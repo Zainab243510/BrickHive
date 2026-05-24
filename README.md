@@ -1,174 +1,172 @@
-# 🏠 BRICKnCLICK
+# 🏠 BRICKHIVE
 
-A modern, full‑stack **Property Listing Web Application** built using the **MERN Stack** (MongoDB, Express.js, React.js, Node.js). BRICKnCLICK provides a smooth, real‑world real‑estate experience where users can list properties, explore listings with advanced filters, chat with owners, and visualize market insights — all through a clean and responsive UI.
+A full-stack **Property Listing Web Application** built with the **MERN stack**. BRICKHIVE lets users list, browse, and purchase properties with Stripe-powered checkout, Cloudinary image hosting, and Google sign-in via Firebase Auth.
+
+**🌐 Live Demo:** [https://brick-hive.vercel.app](https://brick-hive.vercel.app)
 
 ---
 
-## 🚀 Key Features
+## 🚀 Features
 
-### 🔐 Authentication & Security
-
-* JWT‑based user authentication
-* Secure protected routes
-* User‑specific favorites and chats
+### 🔐 Authentication
+* JWT-based email/password auth
+* Google sign-in via Firebase Auth
+* Protected user-specific routes
 
 ### 🏡 Property Management
-
 * Create, update, delete, and view property listings
-* Upload property images using Cloudinary
+* Image uploads via Cloudinary
 * Mark and manage favorite listings
 
-### 🔍 Smart Search & Discovery
+### 🔍 Search & Discovery
+* Filter by price range, amenities, sale/rent type, and location
+* Interactive charts for top listings (Chart.js / Recharts)
 
-* Advanced search with multiple filters:
+### 💳 Payments
+* Stripe Checkout integration (test mode)
+* Webhook-driven order confirmation
 
-  * Price range
-  * Amenities
-  * Sale / Rent type
-  * Location
-* Interactive graph visualizations for top listings
-
-### 💬 Communication
-
-* Real‑time chat with property owners
-* Seamless in‑app messaging experience
-
-### ⚡ UI & Performance
-
-* Fully responsive and modern interface
-* Built with React and Tailwind CSS
-* Optimized state management using Redux Toolkit
+### ⚡ UI
+* React 19 + Tailwind CSS v4
+* Redux Toolkit for state management
+* Responsive across mobile and desktop
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
+**Frontend:** React 19, Vite, Tailwind CSS v4, Redux Toolkit, Axios, Firebase Auth, Chart.js, Recharts, Swiper
 
-* React.js
-* Redux Toolkit
-* Axios
-* Tailwind CSS
-* Chart.js / Recharts
+**Backend:** Node.js, Express 5, MongoDB (Mongoose)
 
-### Backend
-
-* Node.js
-* Express.js
-* MongoDB with Mongoose
-
-### Other Tools & Services
-
-* JSON Web Tokens (JWT)
-* Cloudinary (Image Storage)
+**Services:** Stripe, Cloudinary, MongoDB Atlas
 
 ---
 
-## ⚙️ Installation & Setup
+## 📁 Project Structure
 
-Follow the steps below to run BRICKnCLICK locally:
-
-### 1️⃣ Clone the Repository
-
-```bash
-git clone https://github.com/samar-2004/BRICKnCLICK.git
-cd BRICKnCLICK
+```
+BRICKHIVE/
+├── api/
+│   └── index.js          # Serverless entry point (Vercel)
+├── server/               # Express app code
+│   ├── controllers/
+│   ├── routes/
+│   ├── models/
+│   ├── middleware/
+│   ├── config/
+│   └── utils/
+├── client/               # React + Vite frontend
+│   ├── src/
+│   └── package.json
+├── vercel.json
+└── package.json
 ```
 
-### 2️⃣ Environment Variables
+---
 
-Create a `.env` file in the root directory and add:
+## ⚙️ Local Setup
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/Zainab243510/BrickHive.git
+cd BrickHive
+```
+
+### 2. Install dependencies
+
+```bash
+# Backend (root)
+npm install
+
+# Frontend
+cd client && npm install && cd ..
+```
+
+### 3. Environment variables
+
+Create a `.env` in the project root:
 
 ```env
 MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-PORT=5000
-CLOUDINARY_NAME=your_cloudinary_name
+JWT_SECRET=your_jwt_secret
+
+CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
+
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+STRIPE_CURRENCY=PKR
+
+CLIENT_URL=http://localhost:5173
 ```
 
-### 3️⃣ Install Dependencies
+Create a `client/.env` for the frontend:
 
-**Backend**
-
-```bash
-cd backend
-npm install
+```env
+VITE_FIREBASE_API_KEY=your_firebase_web_api_key
 ```
 
-**Frontend**
+### 4. Run the app
 
 ```bash
-cd ../frontend
-npm install
-```
-
-### 4️⃣ Run the Application
-
-**Start Backend Server**
-
-```bash
-cd backend
+# Backend (http://localhost:3000)
 npm run dev
+
+# Frontend (http://localhost:5173) — in a second terminal
+cd client && npm run dev
 ```
 
-**Start Frontend**
+### 5. (Optional) Stripe webhook for local testing
+
+Install the [Stripe CLI](https://stripe.com/docs/stripe-cli) and run:
 
 ```bash
-cd ../frontend
-npm start
+stripe listen --forward-to localhost:3000/api/payments/webhook
 ```
+
+Copy the `whsec_...` it prints into your `.env` as `STRIPE_WEBHOOK_SECRET`.
 
 ---
 
-## 🌐 Application URLs
+## 🚢 Deployment (Vercel)
 
-* **Frontend:** [http://localhost:3000](http://localhost:3000)
-* **Backend API:** [http://localhost:5000](http://localhost:5000)
+BRICKHIVE is set up to deploy to Vercel as one static frontend + one serverless API function.
+
+1. Push your repo to GitHub
+2. Import the repo at [vercel.com/new](https://vercel.com/new)
+3. **Framework Preset:** Other (leave Build/Output commands blank — `vercel.json` handles them)
+4. Add all the env vars from the **Local Setup** section under **Settings → Environment Variables** (including `VITE_FIREBASE_API_KEY`, which Vite inlines at build time)
+5. Set `CLIENT_URL` to your Vercel domain (e.g. `https://your-app.vercel.app`)
+6. **MongoDB Atlas → Network Access:** add `0.0.0.0/0` so Vercel's dynamic IPs can connect
+7. **Stripe Dashboard → Developers → Webhooks → Add destination:** point at `https://your-app.vercel.app/api/payments/webhook` with the `checkout.session.completed` event, then copy its signing secret into `STRIPE_WEBHOOK_SECRET`
+8. **Firebase Console → Authentication → Settings → Authorized domains:** add your Vercel domain
+
+Redeploy after any env-var change.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are always welcome! 🚀
-
 1. Fork the repository
-2. Create your feature branch
-
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes
-
-   ```bash
-   git commit -m "Added new feature"
-   ```
-4. Push to the branch
-
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a Pull Request
+2. Create a feature branch: `git checkout -b feature-name`
+3. Commit: `git commit -m "Add new feature"`
+4. Push: `git push origin feature-name`
+5. Open a pull request
 
 ---
-
 
 ## ⭐ Support
 
-If you find this project useful, please consider giving it a ⭐ on GitHub.
-
-Your support motivates continuous improvement and future enhancements!
+If this project is useful to you, please consider giving it a ⭐ on GitHub.
 
 ---
 
-### 🚧 Future Enhancements (Planned)
+### 🚧 Planned Enhancements
 
-* Role‑based access (Admin / Agent / User)
-* Map‑based property discovery
-* AI‑powered price recommendations
+* Role-based access (Admin / Agent / User)
+* Map-based property discovery
+* AI-powered price recommendations
 * Saved searches & alerts
-
----
-
-**BRICKnCLICK** — where property discovery meets modern web technology 🏡✨
