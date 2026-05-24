@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
-import mongoose from "mongoose";
 import axios from "axios";
+
+const isValidObjectId = (id) => /^[a-fA-F0-9]{24}$/.test(id);
 
 export default function EditListing() {
   const { listingId } = useParams();
@@ -32,7 +33,7 @@ export default function EditListing() {
     const fetchListing = async () => {
       console.log("Listing ID:", listingId);
 
-      if (!mongoose.Types.ObjectId.isValid(listingId)) {
+      if (!isValidObjectId(listingId)) {
         console.error("Invalid listing ID format.");
         return;
       }

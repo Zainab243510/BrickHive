@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Link ,useNavigate} from "react-router-dom";
-import { set } from "mongoose";
 import OAuth from "../components/OAuth";
 
 export default function SignUp() {
