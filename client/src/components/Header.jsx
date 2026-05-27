@@ -104,18 +104,6 @@ export default function Header() {
             </li>
           </Link>
 
-          {/* <li
-            onClick={handleNotificationClick}
-            className={`flex flex-col items-center cursor-pointer group relative transition ${getNavItemClass("/notifications")}`}
-          >
-            <FaBell className="text-2xl" />
-            <span className={`text-xs cursor-pointer ${getNavItemClass("/notifications")}`}>
-              Notifications
-            </span>
-            {unread && (
-              <span className="absolute top-1 right-2 w-2.5 h-2.5 bg-red-500 rounded-full animate-ping"></span>
-            )}
-          </li>  */}
 
           <Link to="/favourites">
             <li className={`flex flex-col items-center group transition ${getNavItemClass("/favourites")}`}>
