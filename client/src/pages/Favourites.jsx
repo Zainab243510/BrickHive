@@ -25,7 +25,7 @@ function Favourites() {
       setError(null);
 
       try {
-        const res = await axios.get("http://localhost:3000/api/listings", {
+        const res = await axios.get("/api/listings", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
