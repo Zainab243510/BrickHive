@@ -8,7 +8,7 @@ export const fetchFavorites = createAsyncThunk(
     try {
       const token = thunkAPI.getState().user.token;
 
-      const res = await axios.get("http://localhost:3000/api/favorites", {
+      const res = await axios.get("/api/favorites", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -31,7 +31,7 @@ export const addFavoriteAsync = createAsyncThunk(
       const token = thunkAPI.getState().user.token;
    console.log("Listing id : ",listingId)
    console.log("Token in redux store",token)
-      const res = await axios.post(`http://localhost:3000/api/favorites/${listingId}`, null, {
+      const res = await axios.post(`/api/favorites/${listingId}`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -50,7 +50,7 @@ export const removeFavoriteAsync = createAsyncThunk(
       const token = thunkAPI.getState().user.token;
       console.log("Listing id : ",listingId)
       console.log(" Token in redux Store",token)
-      const res = await axios.delete(`http://localhost:3000/api/favorites/${listingId}`, {
+      const res = await axios.delete(`/api/favorites/${listingId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

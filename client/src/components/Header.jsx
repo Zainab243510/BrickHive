@@ -124,13 +124,6 @@ export default function Header() {
             </li>
           </Link>
 
-          <Link to="/analytics">
-            <li className={`flex flex-col items-center group transition ${getNavItemClass("/analytics")}`}>
-              <FaChartBar className="text-2xl" />
-              <span className={`text-xs ${getNavItemClass("/analytics")}`}>Analytics</span>
-            </li>
-          </Link>
-
           <Link to="/search">
             <li className={`flex flex-col items-center group transition ${getNavItemClass("/search")}`}>
               <FaSearch className="text-2xl" />
@@ -234,14 +227,6 @@ export default function Header() {
           >
             <FaHeart className="text-2xl" />
             <span className="text-sm text-slate-600 dark:text-slate-300">Favourites</span>
-          </Link>
-          <Link
-            to="/analytics"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="flex flex-col items-center"
-          >
-            <FaChartBar className="text-2xl" />
-            <span className="text-sm text-slate-600 dark:text-slate-300">Analytics</span>
           </Link>
           <Link
             to="/search"
